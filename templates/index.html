@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='IconLogo.png') }}" type="image/x-icon">
+    <title>Steganography App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            margin-top: 5px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Steganography App</h1>
+    
+    <form action="/encrypt" method="POST" enctype="multipart/form-data">
+        <label for="message">Pesan:</label>
+        <input type="text" name="message" required>
+        <br>
+        <label for="cover_image">Cover Image:</label>
+        <input type="file" name="cover_image" accept="image/*" required>
+        <br>
+        <button type="submit">Sisipkan Pesan</button>
+    </form>
+
+    {% if message %}
+        <h3>{{ message }}</h3>
+    {% endif %}
+    
+    <h5>Download Gambar Hasil Sisip:</h5>
+    <a href="/download" download>Unduh Gambar Hasil Sisip</a>
+
+    <a href="/extract">Menu Ekstrak Pesan</a>
+</body>
+</html>

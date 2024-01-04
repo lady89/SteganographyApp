@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganography App - Extract</title>
+    <link rel="icon" href="{{ url_for('static', filename='IconLogo.png') }}" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            margin-top: 5px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Steganography App - Extract</h1>
+
+
+    {% if extracted_message %}
+        <h2>Hasil Ekstraksi:</h2>
+        <p>{{ extracted_message }}</p>
+    {% endif %}
+
+    {% if extracted_image %}
+        <h2>Gambar Hasil Sisipan:</h2>
+        <img src="{{ url_for('static', filename='extracted_image.png') }}" alt="Gambar Hasil Sisipan">
+    {% endif %}
+
+    {% if uploaded_image %}
+        <h2>Gambar yang Diunggah:</h2>
+        <img src="{{ url_for('static', filename='uploaded_image.png') }}" alt="Gambar yang Diunggah">
+    {% endif %}
+
+    <form action="/extract" method="POST" enctype="multipart/form-data">
+        <label for="upload_image">Unggah Gambar:</label>
+        <input type="file" name="upload_image" accept="image/*" required>
+        <br>
+        <button type="submit">Unggah dan Ekstrak</button>
+    </form>
+    
+    <a href="/">Kembali ke Menu Utama</a>
+</body>
+</html>
